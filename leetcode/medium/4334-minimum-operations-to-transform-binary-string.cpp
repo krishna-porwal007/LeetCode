@@ -2,17 +2,6 @@ class Solution {
     const int INT = 1e6;
 public:
     int minOperations(string s1, string s2) {
-        /*
-            s1 = 110
-            s2 = 101
-            greedy fails ig;
-            because 110 -> 000 -> 100 -> 101 3 steps
-            can't just iterate 
-            dp state i and curr
-            actually we can use greedy
-            first convert all 0 to 1 in s1 if 1 in s2 then 
-            for 2nd case when s1 = 1 and s2 = 0 jsut pair, then even odd thing
-        */
         int n = s1.size();
         int ans = 0;
         if (n == 1) {
