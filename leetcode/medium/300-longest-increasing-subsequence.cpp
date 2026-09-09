@@ -2,15 +2,15 @@ class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
         int n = nums.size();
-        vector<vector<int>> dp(n + 1, vector<int> (n + 1, 0));
-        for (int i = n - 1; i >= 0; i--) {
-            for (int j = i - 1; j >= -1; j--) {
-                int notake = dp[i + 1][j + 1];
-                int take = -1;
-                if (j == -1 || nums[i] > nums[j]) take = 1 + dp[i + 1][i + 1];
-                dp[i][j + 1] = max(take, notake); 
+        vector<int> a;
+        a.push_back(nums[0]);
+        for (int i = 1; i < n; i++) {
+            if (nums[i] > a.back()) a.push_back(nums[i]);
+            else {
+                int idx = lower_bound(a.begin(), a.end(), nums[i]) - a.begin();
+                a[idx] = nums[i];
             }
         }
-        return dp[0][0];
+        return a.size();
     }
 };
